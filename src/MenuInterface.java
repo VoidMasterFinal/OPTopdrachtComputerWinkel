@@ -30,7 +30,7 @@ public class MenuInterface {
                 }
                 case 2 -> Main.addProduct();
                 case 3 -> Main.removeProduct();
-                //case 4 -> Main.;
+                case 4 -> OverzichtOpstellen.InformatieOverzicht.ophalenGegevens();
                 case 5 -> Main.addFinanciëleGegevens();
                 case 6 -> Main.opstellenFinancieelOverzicht();
                 case 7 -> {
