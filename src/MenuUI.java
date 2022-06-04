@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MenuInterface {
+public class MenuUI {
     public void maakKeuze() {
         Scanner scanner = new Scanner(System.in);
         boolean actief = true;
@@ -20,17 +20,10 @@ public class MenuInterface {
                     Maak een keuze: """);
             int keuze = scanner.nextInt();
             switch (keuze) {
-                case 1 -> {
-                    System.out.print("Geef de productcode van het product: ");
-                    int OpzoekenProduct = scanner.nextInt();
-                    Product.getProduct(OpzoekenProduct);
-                    scanner.nextLine();
-                    System.out.println("Druk enter als u terug wilt naar het menu.");
-                    scanner.nextLine();
-                }
-                case 2 -> Main.addProduct();
-                case 3 -> Main.removeProduct();
-                case 4 -> OverzichtOpstellen.InformatieOverzicht.ophalenGegevens();
+                case 1 -> productUitvoering.product(1);
+                case 2 -> productUitvoering.product(2);
+                case 3 -> productUitvoering.product(3);
+                case 4 -> InformatieOverzicht.ophalenGegevens();
                 case 5 -> Main.addFinanciëleGegevens();
                 case 6 -> Main.opstellenFinancieelOverzicht();
                 case 7 -> {

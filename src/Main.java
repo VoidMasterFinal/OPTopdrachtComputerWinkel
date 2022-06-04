@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -10,10 +11,10 @@ public class Main {
         Autorisatie.addMedewerker("Jan", "Kabel", "123", "Eigenaar");
         Autorisatie.addMedewerker("Karel", "van der Plank", "321", "Werknemer");
 
-        OverzichtOpstellen.FinancieelOverzicht.ophalenGegevens(1,1000,600);
-        OverzichtOpstellen.FinancieelOverzicht.ophalenGegevens(2,1200,800);
-        OverzichtOpstellen.FinancieelOverzicht.ophalenGegevens(3,1600,850);
-        OverzichtOpstellen.FinancieelOverzicht.ophalenGegevens(4,2200,2000);
+        FinancieelOverzicht.ophalenGegevens(1,1000,600);
+        FinancieelOverzicht.ophalenGegevens(2,1200,800);
+        FinancieelOverzicht.ophalenGegevens(3,1600,850);
+        FinancieelOverzicht.ophalenGegevens(4,2200,2000);
 
         System.out.println("\nWelkom bij het systeem!\nGelieve hieronder in te loggen.");
         if (Autorisatie.startAutorisatie() == true) {
@@ -26,13 +27,28 @@ public class Main {
             //mainInterface.maakKeuze();
         //}
 
-            MenuInterface mainInterface = new MenuInterface();
+            MenuUI mainInterface = new MenuUI();
             mainInterface.maakKeuze();
         }
         else {
             System.out.println("Inloggen 3 keer mislukt. Toegang geweigerd.");
             exit(420);
         }
+    }
+/*
+    public static void product(int type) {
+        ArrayList productMethodes = new ArrayList();
+        productMethodes.add()
+    }
+
+    public static void printProduct() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Geef de productcode van het product: ");
+        int OpzoekenProduct = scanner.nextInt();
+        Product.getProduct(OpzoekenProduct);
+        scanner.nextLine();
+        System.out.println("Druk enter als u terug wilt naar het menu.");
+        scanner.nextLine();
     }
 
     public static void addProduct() {
@@ -52,7 +68,6 @@ public class Main {
         System.out.println("Druk enter als u terug wilt naar het menu.");
         scanner.nextLine();
     }
-
     public static void removeProduct() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Geef de productcode van het product dat u wilt verwijderen:");
@@ -62,6 +77,7 @@ public class Main {
         System.out.println("Druk enter als u terug wilt naar het menu.");
         scanner.nextLine();
     }
+*/
 
     public static void addMedewerker() {
         Scanner scanner = new Scanner(System.in);
@@ -95,7 +111,7 @@ public class Main {
         int week = scanner.nextInt();
         System.out.print("Geef het aantal weken dat u ervoor wilt zien: ");
         int aantalWeken = scanner.nextInt();
-        OverzichtOpstellen.FinancieelOverzicht.printOverzicht(week, aantalWeken);
+        FinancieelOverzicht.printOverzicht(week, aantalWeken);
         scanner.nextLine();
         System.out.println("Druk enter als u terug wilt naar het menu.");
         scanner.nextLine();
@@ -109,7 +125,7 @@ public class Main {
         double verdiend = scanner.nextDouble();
         System.out.print("Geef het uitgegeven bedrag: ");
         double uitgegeven = scanner.nextDouble();
-        OverzichtOpstellen.FinancieelOverzicht.ophalenGegevens(week, verdiend, uitgegeven);
+        FinancieelOverzicht.ophalenGegevens(week, verdiend, uitgegeven);
         scanner.nextLine();
         System.out.println("Druk enter als u terug wilt naar het menu.");
         scanner.nextLine();

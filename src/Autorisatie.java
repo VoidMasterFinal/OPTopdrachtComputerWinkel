@@ -30,20 +30,20 @@ public class Autorisatie {
         return null;
     }
 
-    public static ArrayList GetMedewerkersList() {
+    public ArrayList GetMedewerkersList() {
         return medewerkerGegevens;
     }
 
-    public static int getMedewerkerCode(String password) {
+    public int getMedewerkerCode(String password) {
         int pos = medewerkerGegevens.indexOf(password);
         return medewerkerGegevens.get(pos).medewerkersCode;
     }
 
-    public static String getPassword(int medewerkersCode) {
+    public String getPassword(int medewerkersCode) {
         return medewerkerGegevens.get(medewerkerGegevens.indexOf(medewerkersCode)).password;
     }
 
-    public static String getNaam(String password) {
+    public String getNaam(String password) {
         return medewerkerGegevens.get(medewerkerGegevens.indexOf(password)).voornaam + " " + medewerkerGegevens.get(medewerkerGegevens.indexOf(password)).achternaam;
     }
 
