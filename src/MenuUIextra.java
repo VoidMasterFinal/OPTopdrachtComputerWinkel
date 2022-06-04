@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MenuUI {
+public class MenuUIextra {
     public void maakKeuze() {
         Scanner scanner = new Scanner(System.in);
         boolean actief = true;

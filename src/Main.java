@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -17,67 +16,11 @@ public class Main {
         FinancieelOverzicht.ophalenGegevens(4,2200,2000);
 
         System.out.println("\nWelkom bij het systeem!\nGelieve hieronder in te loggen.");
-        if (Autorisatie.startAutorisatie() == true) {
-            //if (persoon.bedrijfsrol.equals("Eigenaar")) {
-            //    MenuInterfaceB menuInterface = new MenuInterfaceB();
-            //}
-            //else {
-            //    MenuInterfaceW mainInterface = new MenuInterfaceW();
-            //}
-            //mainInterface.maakKeuze();
-        //}
-
-            MenuUI mainInterface = new MenuUI();
-            mainInterface.maakKeuze();
-        }
-        else {
+        if (Autorisatie.startAutorisatie() == false) {
             System.out.println("Inloggen 3 keer mislukt. Toegang geweigerd.");
             exit(420);
         }
     }
-/*
-    public static void product(int type) {
-        ArrayList productMethodes = new ArrayList();
-        productMethodes.add()
-    }
-
-    public static void printProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Geef de productcode van het product: ");
-        int OpzoekenProduct = scanner.nextInt();
-        Product.getProduct(OpzoekenProduct);
-        scanner.nextLine();
-        System.out.println("Druk enter als u terug wilt naar het menu.");
-        scanner.nextLine();
-    }
-
-    public static void addProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Geef de naam van het product dat u wilt toevoegen:");
-        String productNaamSelected = scanner.nextLine();
-        System.out.println("Geef het merk van het product dat u wilt toevoegen:");
-        String productMerkSelected = scanner.nextLine();
-        System.out.println("Geef de inkoopprijs van het product dat u wilt toevoegen:");
-        Double inkoopPrijsSelected = scanner.nextDouble();
-        System.out.println("Geef de verkoopprijs van het product dat u wilt toevoegen:");
-        Double verkoopPrijsSelected = scanner.nextDouble();
-        System.out.println("Geef de voorraad van het product dat u wilt toevoegen:");
-        int voorraadProduct = scanner.nextInt();
-        Product.addProduct(productNaamSelected,productMerkSelected,inkoopPrijsSelected,verkoopPrijsSelected,voorraadProduct);
-        scanner.nextLine();
-        System.out.println("Druk enter als u terug wilt naar het menu.");
-        scanner.nextLine();
-    }
-    public static void removeProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Geef de productcode van het product dat u wilt verwijderen:");
-        int productCodeSelected = scanner.nextInt();
-        Product.removeProduct(productCodeSelected);
-        scanner.nextLine();
-        System.out.println("Druk enter als u terug wilt naar het menu.");
-        scanner.nextLine();
-    }
-*/
 
     public static void addMedewerker() {
         Scanner scanner = new Scanner(System.in);

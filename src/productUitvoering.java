@@ -14,7 +14,6 @@ public class productUitvoering {
 
 
     public static void product(int type) {
-        //productMethodes.add();
         if (type == 1) {
             printProduct();
         }

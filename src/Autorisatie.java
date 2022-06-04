@@ -83,6 +83,14 @@ public class Autorisatie {
                 gegevenAntwoordPassoword = scanner.nextLine();
                 if (medewerkerGegevens.get(pos).password.equals(gegevenAntwoordPassoword)) {
                     System.out.println("\nWelkom " + medewerkerGegevens.get(pos).voornaam + " " + medewerkerGegevens.get(pos).achternaam + "!\n");
+                    if (medewerkerGegevens.get(pos).bedrijfsrol.equals("Eigenaar")) {
+                        MenuUIextra mainUI = new MenuUIextra();
+                        mainUI.maakKeuze();
+                    }
+                    else {
+                        MenuUInormaal mainUI = new MenuUInormaal();
+                        mainUI.maakKeuze();
+                    }
                     return true;
                 }
             }
