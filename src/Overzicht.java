@@ -1,4 +1,5 @@
+/*
 public abstract class Overzicht {
-        public static void ophalenGegevens() {}
-        public static void printOverzicht() {}
-}
+        public void ophalenGegevens() {}
+        public void printOverzicht() {}
+}*/

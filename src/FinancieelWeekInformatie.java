@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class FinancieelWeekInformatie {
+    private int currentWeek;
+    private double verdiend;
+    private double uitgegeven;
+
+    public FinancieelWeekInformatie(int currentWeek, double verdiend, double uitgegeven) {
+        this.currentWeek = currentWeek;
+        this.verdiend = verdiend;
+        this.uitgegeven = uitgegeven;
+    }
+
+    public int getCurrentWeek() {
+        return currentWeek;
+    }
+
+    public double getVerdiend() {
+        return verdiend;
+    }
+
+    public  double getUitgegeven() {
+        return uitgegeven;
+    }
+}
+
+class FinancieelOverzichtManager {
+
+    private ArrayList<FinancieelWeekInformatie> financieleGegevens = new ArrayList<>();
+
+    /*
+    public ArrayList<FinancieelOverzicht> getFinancieleGegevens() {
+        return financieleGegevens;
+    }
+    */
+
+    public void opstellenFinancieelOverzicht() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Van welke week wilt u de financiële informatie bekijken?");
+        System.out.print("Week: ");
+        int week = scanner.nextInt();
+        System.out.print("Geef het aantal weken terug vanaf de gegeven week dat u wilt zien: ");
+        int aantalWeken = scanner.nextInt();
+        printOverzicht(week, aantalWeken);
+    }
+
+    public void printOverzicht(int currentWeek, int aantalWekenTerug) {
+        int thisweek;
+        for (int i = 0; i <= aantalWekenTerug; i++) {
+            thisweek = currentWeek - aantalWekenTerug + i;
+            System.out.println("\nWeek " + thisweek + ": ");
+            try {
+                for (int x = 0; x < financieleGegevens.size(); x++) {
+                    if (financieleGegevens.get(x).getCurrentWeek() == thisweek) {
+                        System.out.println("Verdiend: " + financieleGegevens.get(x).getVerdiend() + " euro" +
+                                            "\nUitgegeven: " + financieleGegevens.get(x).getUitgegeven() + " euro" +
+                                            "\nWinst: " + (financieleGegevens.get(x).getVerdiend() - financieleGegevens.get(x).getUitgegeven()) + " euro");
+                        try {
+                            System.out.println("Winstverschil t.o.v. vorige week: " + ((financieleGegevens.get(x).getVerdiend() - financieleGegevens.get(x).getUitgegeven()) - (financieleGegevens.get(x - 1).getVerdiend() - financieleGegevens.get(x - 1).getUitgegeven())) + " euro");
+                        }
+                        catch (Exception e) {
+                            System.out.println("Kon bepaalde gegevens niet ophalen");
+                        }
+                    }
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Er zijn van week " + thisweek + " geen gegevens bekend.");
+            }
+            System.out.println();
+        }
+    }
+
+    public void toevoegenFinancieleGegevens(int week, double verdiend, double uitgaven) {
+        if (financieleGegevens.add(new FinancieelWeekInformatie(week, verdiend, uitgaven))) {
+            System.out.println("Gegevens succesvol toegevoegd");
+        } else {
+            System.out.println("Gegevens niet toegevoegd, kon gegevens niet aan de ArrayList toevoegen");
+        }
+    }
+
+    public void ophalenGegevens() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Geef de week: ");
+        int week = scanner.nextInt();
+        System.out.print("Geef het verdiende bedrag: ");
+        double verdiend = scanner.nextDouble();
+        System.out.print("Geef het uitgegeven bedrag: ");
+        double uitgegeven = scanner.nextDouble();
+        toevoegenFinancieleGegevens(week, verdiend, uitgegeven);
+    }
+}
