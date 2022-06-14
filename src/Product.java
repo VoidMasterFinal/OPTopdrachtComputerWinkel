@@ -9,7 +9,7 @@ public class Product {
     private double verkoopPrijs;
     private int voorraad;
     protected String product_type;
-    //TODO: Levertijd, onderdelen
+    //TODO: Mogelijk Levertijd, onderdelen
 
     public Product(String naam, String merk, int code, double inkoopPrijs, double verkoopPrijs, int voorraad) {
         this.naam = naam;
@@ -132,15 +132,15 @@ class ProductManager {
     public void bootstrap() {
         alleProducten.add(new LaptopProduct("Intel9C","Intel", alleProducten.size() + 1,300,450, 3, 15, true));
         alleProducten.add(new PrinterProduct("Colorer10","COLOR", alleProducten.size() + 1,100,250, 5, 8, true));
-        addProductSilent("Intel5D","Intel",500,600,5);
-        addProductSilent("DELLG2","DELL",580,680,3);
+        addProduct("Intel5D","Intel",500,600,5);
+        addProduct("DELLG2","DELL",580,680,3);
     }
 
     public ArrayList<Product> getProductList() {
         return alleProducten;
     }
 
-    public void informationToAddProduct() {
+    public Product informationToAddProduct() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Geef de naam van het product dat u wilt toevoegen:");
         String productNaamSelected = scanner.nextLine();
@@ -152,30 +152,16 @@ class ProductManager {
         Double verkoopPrijsSelected = scanner.nextDouble();
         System.out.println("Geef de voorraad van het product dat u wilt toevoegen:");
         int voorraadProduct = scanner.nextInt();
-        addProduct(productNaamSelected,productMerkSelected,inkoopPrijsSelected,verkoopPrijsSelected,voorraadProduct);
+        return addProduct(productNaamSelected,productMerkSelected,inkoopPrijsSelected,verkoopPrijsSelected,voorraadProduct);
     }
 
-    public void addProductSilent(String naam, String merk, double inkoopPrijs, double verkoopPrijs, int voorraad) {
+    public Product addProduct(String naam, String merk, double inkoopPrijs, double verkoopPrijs, int voorraad) {
         int code = alleProducten.size() + 1;
-        alleProducten.add(new Product(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad));
-    }
-
-
-    public void addProduct(String naam, String merk, double inkoopPrijs, double verkoopPrijs, int voorraad) {
-        int code = alleProducten.size() + 1;
-        if (alleProducten.add(new Product(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad))) {
-            System.out.println("Product succesvol toegevoegd.\nDe productcode is: " + code);
-        }
-        else {
-            System.out.println("Product niet toegevoegd, kon product niet toevoegen aan ArrayList");
-        }
-    }
-/*
-    public void addProduct(Product product) {
-        product.set_code(alleProducten.size() + 1);
+        Product product = new Product(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad);
         alleProducten.add(product);
+        return product;
     }
-*/
+
     public boolean removeProduct(Product product) {
         for (int i = 0; i < alleProducten.size(); i++) {
             if (alleProducten.get(i).getCode() == product.getCode()) {
@@ -185,35 +171,10 @@ class ProductManager {
         }
         return false;
     }
-/*
-    public void removeProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Geef de productcode van het product dat u wilt verwijderen:");
-        int productCodeSelected = scanner.nextInt();
-        if (Main.removeProduct(productCodeSelected))
-            System.out.println("Product " + product.getNaam() + " (" + product.getMerk() + ") succesvol verwijderd.");
-        else
-            System.out.println("Product niet verwijderd; Geen product gevonden.");
-        scanner.nextLine();
-        System.out.println("Druk enter als u terug wilt naar het menu.");
-        scanner.nextLine();
-    }
 
-    public void removeProduct(int productCode) {
-        for (int i = 0; i < alleProducten.size(); i++) {
-            if (alleProducten.get(i).getCode() == productCode) {
-                alleProducten.remove(i);
-                System.out.println("Product " +  + "succesvol verwijderd.");
-                return;
-            }
-        }
-    }
-*/
     public Product getProductByCode(int productCode) {
         for (int i = 0; i < alleProducten.size(); i++) {
             if (alleProducten.get(i).getCode() == productCode) {
-                //alleProducten.get(i).print();
-                //print(alleProducten.get(i));
                 return alleProducten.get(i);
             }
         }

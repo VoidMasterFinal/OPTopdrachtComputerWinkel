@@ -50,17 +50,18 @@ class FinancieelOverzichtManager {
         for (int i = 0; i <= aantalWekenTerug; i++) {
             thisweek = currentWeek - aantalWekenTerug + i;
             System.out.println("\nWeek " + thisweek + ": ");
+            // TODO: .get() into een object met daar alleen een try-catch omheen, en daarna alleen dat object gebruiken i.p.v. steeds .get()
             try {
-                for (int x = 0; x < financieleGegevens.size(); x++) {
-                    if (financieleGegevens.get(x).getCurrentWeek() == thisweek) {
-                        System.out.println("Verdiend: " + financieleGegevens.get(x).getVerdiend() + " euro" +
-                                            "\nUitgegeven: " + financieleGegevens.get(x).getUitgegeven() + " euro" +
-                                            "\nWinst: " + (financieleGegevens.get(x).getVerdiend() - financieleGegevens.get(x).getUitgegeven()) + " euro");
+                for (int j = 0; j < financieleGegevens.size(); j++) {
+                    if (financieleGegevens.get(j).getCurrentWeek() == thisweek) {
+                        System.out.println("Verdiend: " + financieleGegevens.get(j).getVerdiend() + " euro" +
+                                            "\nUitgegeven: " + financieleGegevens.get(j).getUitgegeven() + " euro" +
+                                            "\nWinst: " + (financieleGegevens.get(j).getVerdiend() - financieleGegevens.get(j).getUitgegeven()) + " euro");
                         try {
-                            System.out.println("Winstverschil t.o.v. vorige week: " + ((financieleGegevens.get(x).getVerdiend() - financieleGegevens.get(x).getUitgegeven()) - (financieleGegevens.get(x - 1).getVerdiend() - financieleGegevens.get(x - 1).getUitgegeven())) + " euro");
+                            System.out.println("Winstverschil t.o.v. vorige week: " + ((financieleGegevens.get(j).getVerdiend() - financieleGegevens.get(j).getUitgegeven()) - (financieleGegevens.get(j - 1).getVerdiend() - financieleGegevens.get(j - 1).getUitgegeven())) + " euro");
                         }
                         catch (Exception e) {
-                            System.out.println("Kon bepaalde gegevens niet ophalen");
+                            System.out.println("Kon bepaalde van week " + thisweek + " gegevens niet ophalen");
                         }
                     }
                 }

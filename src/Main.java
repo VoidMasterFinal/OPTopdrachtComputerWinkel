@@ -14,36 +14,23 @@ class Main {
 
         medewerkersPool.addMedewerker("Jan", "Kabel", "123", "Eigenaar");
         medewerkersPool.addMedewerker("Karel", "van der Plank", "321", "Werknemer");
+        medewerkersPool.addMedewerker("Piet", "Stoel", "101", "Administratief Medewerker");
 
         //Een eigenaar heeft alle 9 functies, terwijl een Werknemer maar de eerste 4 heeft
 
-        financieelOverzichtManager.toevoegenFinancieleGegevens(1,1000,600);
-        financieelOverzichtManager.toevoegenFinancieleGegevens(2,1200,800);
-        financieelOverzichtManager.toevoegenFinancieleGegevens(3,1600,850);
-        financieelOverzichtManager.toevoegenFinancieleGegevens(4,2200,2000);
+        financieelOverzichtManager.toevoegenFinancieleGegevens(1, 1000, 600);
+        financieelOverzichtManager.toevoegenFinancieleGegevens(2, 1200, 800);
+        financieelOverzichtManager.toevoegenFinancieleGegevens(3, 1600, 850);
+        financieelOverzichtManager.toevoegenFinancieleGegevens(4, 2200, 2000);
 
         System.out.println("\nWelkom bij het systeem!\nGelieve hieronder in te loggen.");
         Medewerker medewerker = autorisatie.startAutorisatie(medewerkersPool);
         if (medewerker == null) {
             System.out.println("Inloggen 3 keer mislukt. Toegang geweigerd.");
             exit(1);
-        }
-        else {
-            if (medewerker.getBedrijfsrol().equals("Eigenaar")) {
-                MenuUIextra mainUI = new MenuUIextra();
-                mainUI.maakKeuze(medewerkersPool, productManager, financieelOverzichtManager);
-            } else {
-                MenuUInormaal mainUI = new MenuUInormaal();
-                mainUI.maakKeuze(medewerkersPool, productManager, financieelOverzichtManager);
-            }
+        } else {
+            MenuManager menuManager = new MenuManager();
+            menuManager.startMenu(medewerker, medewerkersPool, productManager, financieelOverzichtManager);
         }
     }
-/*
-    public boolean inloggen(boolean inlogCodeGelukt, boolean passwordGelukt) {
-        if (inlogCodeGelukt == true && passwordGelukt == true) {
-            return true;
-        }
-        return false;
-    }
-*/
 }

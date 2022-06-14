@@ -7,7 +7,6 @@ public class Medewerker {
     private String achternaam;
     private String password;
     private String bedrijfsrol;
-    //private boolean goedgekeurd = false;
 
     public Medewerker(int code, String voornaam, String achternaam, String password, String bedrijfsrol) {
         this.code = code;
@@ -27,18 +26,12 @@ public class Medewerker {
 
     public String getBedrijfsrol() {return bedrijfsrol;}
 
-    //public boolean getGoedgekeurd() {return goedgekeurd;}
-
     public boolean authenticate(String meegegeven_password) {
         if (password.equals(meegegeven_password)) {
             return true;
         }
         return false;
     }
-
-    //public  boolean is_superuser() {
-    //    return bedrijfsrol.equals("Eigenaar");
-    //}
 
     public void print() {
         System.out.println("Voornaam: " + voornaam +
@@ -56,7 +49,6 @@ class MedewerkersPool {
     public void printWithWerknemersCode() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Geef de werknemercode: ");
-        //TODO check below "-1"
         int OpzoekenWerknemerCode = scanner.nextInt() - 1;
         if (medewerkerGegevens.get(OpzoekenWerknemerCode) == null) {
             System.out.println("Deze werknemer staat niet in het systeem");
@@ -68,32 +60,6 @@ class MedewerkersPool {
     public Medewerker getWerknemerByCode(int gegevenWerknemersCode) {
         return medewerkerGegevens.get(gegevenWerknemersCode - 1);
     }
-/*
-        for (int i = 0; i < medewerkerGegevens.size(); i++) {
-            if (medewerkerGegevens.get(i).getCode() == code) {
-                return medewerkerGegevens.get(i);
-            }
-        }
-        return null;
-    }
-*/
-
-    /*public ArrayList getMedewerkersList() {
-        return medewerkerGegevens;
-    }
-
-    public int getMedewerkerCode(String password) {
-        int pos = medewerkerGegevens.indexOf(password);
-        return medewerkerGegevens.get(pos).getCode();
-    }
-
-    public String getPassword(int medewerkersCode) {
-        return medewerkerGegevens.get(medewerkerGegevens.indexOf(medewerkersCode)).getPassword();
-    }
-
-    public String getNaam(String password) {
-        return medewerkerGegevens.get(medewerkerGegevens.indexOf(password)).getVoornaam() + " " + medewerkerGegevens.get(medewerkerGegevens.indexOf(password)).getAchternaam();
-    }*/
 
     public void addMedewerker(String voornaam, String achternaam, String password, String bedrijfsrol) {
         int medewerkersCode = medewerkerGegevens.size() + 1;

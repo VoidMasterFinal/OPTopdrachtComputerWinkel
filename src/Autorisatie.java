@@ -7,6 +7,7 @@ public class Autorisatie {
         int gegevenAntwoordCode = -1;
         String gegevenAntwoordPassword;
         for (int x = 1; x <= 3; x++) {
+            // Get werknemer by code
             System.out.print("Poging " + x + "/3,\nGeef uw medewerkercode: ");
             gegevenAntwoordCode = scanner.nextInt();
             Medewerker medewerker = medewerkersPool.getWerknemerByCode(gegevenAntwoordCode);
@@ -14,6 +15,7 @@ public class Autorisatie {
                 System.out.println("Gebruikerscode is niet correct");
                 continue;
             }
+            // Get password
             System.out.print("Geef uw password: ");
             scanner.nextLine();
             gegevenAntwoordPassword = scanner.nextLine();
@@ -21,6 +23,7 @@ public class Autorisatie {
                 System.out.println("Wachtwoord is niet correct");
                 continue;
             }
+            // Succesvol ingelogd
             System.out.println("\nWelkom " + medewerker.getVoornaam() + " " + medewerker.getAchternaam() + "!\n");
             return medewerker;
         }

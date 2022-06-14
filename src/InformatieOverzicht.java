@@ -26,5 +26,6 @@ public class InformatieOverzicht {
         for (int i = 0; i < printAllGegevens.size(); i++) {
             System.out.println(soortGegeven + " " + (i + 1) + ": " + printAllGegevens.get(i));
         }
+        System.out.println();
     }
 }
