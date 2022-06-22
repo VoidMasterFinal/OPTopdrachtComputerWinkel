@@ -29,11 +29,6 @@ class FinancieelOverzichtManager {
 
     private ArrayList<FinancieelWeekInformatie> financieleGegevens = new ArrayList<>();
 
-    /*
-    public ArrayList<FinancieelOverzicht> getFinancieleGegevens() {
-        return financieleGegevens;
-    }
-    */
 
     public void opstellenFinancieelOverzicht() {
         Scanner scanner = new Scanner(System.in);
@@ -45,12 +40,15 @@ class FinancieelOverzichtManager {
         printOverzicht(week, aantalWeken);
     }
 
+    public double getWinstByWeek(int week) {
+        return financieleGegevens.get(week).getVerdiend() - financieleGegevens.get(week).getUitgegeven();
+    }
+
     public void printOverzicht(int currentWeek, int aantalWekenTerug) {
         int thisweek;
         for (int i = 0; i <= aantalWekenTerug; i++) {
             thisweek = currentWeek - aantalWekenTerug + i;
             System.out.println("\nWeek " + thisweek + ": ");
-            // TODO: .get() into een object met daar alleen een try-catch omheen, en daarna alleen dat object gebruiken i.p.v. steeds .get()
             try {
                 for (int j = 0; j < financieleGegevens.size(); j++) {
                     if (financieleGegevens.get(j).getCurrentWeek() == thisweek) {

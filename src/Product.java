@@ -9,7 +9,6 @@ public class Product {
     private double verkoopPrijs;
     private int voorraad;
     protected String product_type;
-    //TODO: Mogelijk Levertijd, onderdelen
 
     public Product(String naam, String merk, int code, double inkoopPrijs, double verkoopPrijs, int voorraad) {
         this.naam = naam;
@@ -47,46 +46,14 @@ public class Product {
 
     public void print() {
         System.out.println("Naam: " + naam + "" +
-                            "\nMerk: " + merk + "" +
-                            "\nProductcode: " + code +
-                            "\nType: " + product_type +
-                            "\nInkoopprijs: " + inkoopPrijs + " euro" +
-                            "\nVerkoopprijs: " + verkoopPrijs + " euro" +
-                            "\nIn voorraad: " + voorraad);
+                "\nMerk: " + merk + "" +
+                "\nProductcode: " + code +
+                "\nType: " + product_type +
+                "\nInkoopprijs: " + inkoopPrijs + " euro" +
+                "\nVerkoopprijs: " + verkoopPrijs + " euro" +
+                "\nIn voorraad: " + voorraad);
     }
 }
-
-
-/*
-    public double getPrijs(double verkoopPrijs, int leeftijd) {
-        if (leeftijd >= 10 && leeftijd <= 15)
-            return this.verkoopPrijs * 0.8;
-        if (leeftijd >= 18 && leeftijd <= 24)
-            return this.verkoopPrijs * 0.75;
-        if (leeftijd >= 65)
-            return this.verkoopPrijs * 0.85;
-        else
-            return this.verkoopPrijs;
-    }
-
-    public double getTotaalPrijs(int soortProduct, int leeftijd, boolean medewerker, boolean kortingscode) {
-        double totaalprijs;
-        double totaleKorting = 0;
-        if (soortProduct == 1)
-            totaalprijs = 600;
-        else
-            totaalprijs = 680;
-        if (leeftijd >= 18 && leeftijd <= 24)
-            totaleKorting += 0.25;
-        if (leeftijd >= 65)
-            totaleKorting += 0.15;
-        if (medewerker == true)
-            totaleKorting += 0.05;
-        if (kortingscode == true)
-            totaleKorting += 0.15;
-        return totaalprijs * (1 - totaleKorting);
-    }
-*/
 
 class LaptopProduct extends Product {
     private float screen_inch;

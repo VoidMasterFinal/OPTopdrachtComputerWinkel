@@ -7,17 +7,15 @@ import java.util.List;
 public class Tests {
 
     @Test
-    public void testIets() {
-
+    public void testFinancieleGegevens() {
+        FinancieelOverzichtManager testFinancieelOverzichtManager = new FinancieelOverzichtManager();
+        testFinancieelOverzichtManager.toevoegenFinancieleGegevens(1,1000,800);
+        Assert.assertEquals(testFinancieelOverzichtManager.getWinstByWeek(0), 200);
+        testFinancieelOverzichtManager.toevoegenFinancieleGegevens(2,1500,900);
+        Assert.assertEquals(testFinancieelOverzichtManager.getWinstByWeek(1), 600);
     }
 }
-
-    /*                  ---OUDE TESTEN---
-    Formulier kandidaat!
-    @Test
-    public void testPrintOverzicht() {
-        OverzichtOpstellen.
-    }
+/*    //                ---OUDE TESTEN---
 
     @Test
     public void testOphalenGegevensFinancien() {
