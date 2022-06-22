@@ -59,7 +59,7 @@ class FinancieelOverzichtManager {
                             System.out.println("Winstverschil t.o.v. vorige week: " + ((financieleGegevens.get(j).getVerdiend() - financieleGegevens.get(j).getUitgegeven()) - (financieleGegevens.get(j - 1).getVerdiend() - financieleGegevens.get(j - 1).getUitgegeven())) + " euro");
                         }
                         catch (Exception e) {
-                            System.out.println("Kon bepaalde van week " + thisweek + " gegevens niet ophalen");
+                            System.out.println("Kon bepaalde gegevens van week " + thisweek + " niet ophalen");
                         }
                     }
                 }
