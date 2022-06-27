@@ -32,7 +32,7 @@ class MenuManager {
     private void menuKeuzeGetProduct(Scanner scanner, ProductManager productManager) {
         System.out.println("Geef de productcode van het product dat u wilt bekijken");
         int gegevenProductcode = scanner.nextInt();
-        Product testProduct = productManager.getProductByCode(gegevenProductcode);
+        BaseProduct testProduct = productManager.getProductByCode(gegevenProductcode);
         if (testProduct != null) {
             testProduct.print();
         }
@@ -43,7 +43,7 @@ class MenuManager {
     }
 
     private void menuKeuzeAddProduct(Scanner scanner, ProductManager productManager) {
-        Product newProduct = productManager.informationToAddProduct();
+        BaseProduct newProduct = productManager.informationToAddProduct();
         System.out.println("Product succesvol toegevoegd.\nDe productcode is: " + newProduct.getCode());
         pressEnterForMenu(scanner);
     }
@@ -51,7 +51,7 @@ class MenuManager {
     private void menuKeuzeRemoveProduct(Scanner scanner, ProductManager productManager) {
         System.out.println("Geef de productcode van het product dat u wilt verwijderen");
         int gegevenProductcode = scanner.nextInt();
-        Product testProduct = productManager.getProductByCode(gegevenProductcode);
+        BaseProduct testProduct = productManager.getProductByCode(gegevenProductcode);
         if (testProduct != null) {
             if (productManager.removeProduct(testProduct)) {
                 System.out.println("Product successvol verwijderd!");
@@ -66,7 +66,7 @@ class MenuManager {
     }
 
     private void menuKeuzeOpstellenInformatieOverzicht(Scanner scanner, ProductManager productManager, InformatieOverzicht informatieOverzicht) {
-        informatieOverzicht.ophalenGegevens();
+        informatieOverzicht.setupGegevens();
         pressEnterForMenu(scanner);
     }
 
