@@ -15,6 +15,8 @@ public class Tests {
         Assert.assertEquals(testFinancieelOverzichtManager.getWinstByWeek(1), 600);
     }
 }
+
+
 /*    //                ---OUDE TESTEN---
 
     @Test
