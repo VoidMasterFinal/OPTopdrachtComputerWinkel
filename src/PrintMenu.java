@@ -97,6 +97,7 @@ class MenuManager {
 
     public void startMenu(Medewerker medewerker, MedewerkersPool medewerkersPool, ProductManager productManager, FinancieelOverzichtManager financieelOverzichtManager) {
         InformatieOverzicht informatieOverzicht = new InformatieOverzicht();
+        MenuManager menuManager = new MenuManager();
         Scanner scanner = new Scanner(System.in);
         boolean actief = true;
         while (actief) {
@@ -104,68 +105,77 @@ class MenuManager {
             if (medewerker.getBedrijfsrol().equals("Eigenaar") || medewerker.getBedrijfsrol().equals("Administratief Medewerker")) {
                 printMenu.printMenu2();
                 System.out.println("0) Exit\nMaak een keuze: ");
-                int keuze = scanner.nextInt();
-                switch (keuze) {
-                    case 1 -> {
-                        menuKeuzeGetProduct(scanner, productManager);
-                    }
-                    case 2 -> {
-                        menuKeuzeAddProduct(scanner, productManager);
-                    }
-                    case 3 -> {
-                        menuKeuzeRemoveProduct(scanner, productManager);
-                    }
-                    case 4 -> {
-                        menuKeuzeOpstellenInformatieOverzicht(scanner, productManager, informatieOverzicht);
-                    }
-                    case 5 -> {
-                        menuKeuzeFinancieleGegevensToevoegen(scanner, productManager, financieelOverzichtManager);
-                    }
-                    case 6 -> {
-                        menuKeuzeOpstellenFinancieelOverzicht(scanner, productManager, financieelOverzichtManager);
-                    }
-                    case 7 -> {
-                        menuKeuzeGetWerknemers(scanner, productManager, medewerkersPool);
-                    }
-                    case 8 -> {
-                        menuKeuzeAddMedewerker(scanner, productManager, medewerkersPool);
-                    }
-                    case 9 -> {
-                        menuKeuzeRemoveMedewerker(scanner, productManager, medewerkersPool);
-                    }
-                    case 0 -> {
-                        actief = false;
-                    }
-                    default -> {
-                        System.out.println("Ongeldige keuze");
-                    }
-                }
+                actief = menuManager.superMenu(scanner, productManager, informatieOverzicht, financieelOverzichtManager, medewerkersPool);
             }
-
             if (medewerker.getBedrijfsrol().equals("Werknemer")) {
                 System.out.println("0) Exit\nMaak een keuze: ");
-                int keuze = scanner.nextInt();
-                switch (keuze) {
-                    case 1 -> {
-                        menuKeuzeGetProduct(scanner, productManager);
-                    }
-                    case 2 -> {
-                        menuKeuzeAddProduct(scanner, productManager);
-                    }
-                    case 3 -> {
-                        menuKeuzeRemoveProduct(scanner, productManager);
-                    }
-                    case 4 -> {
-                        menuKeuzeOpstellenInformatieOverzicht(scanner, productManager, informatieOverzicht);
-                    }
-                    case 0 -> {
-                        actief = false;
-                    }
-                    default -> {
-                        System.out.println("Ongeldige keuze");
-                    }
-                }
+                actief = menuManager.normalMenu(scanner, productManager, informatieOverzicht);
             }
         }
+    }
+
+    public boolean superMenu (Scanner scanner, ProductManager productManager, InformatieOverzicht informatieOverzicht, FinancieelOverzichtManager financieelOverzichtManager, MedewerkersPool medewerkersPool) {
+        int keuze = scanner.nextInt();
+        switch (keuze) {
+            case 1 -> {
+                menuKeuzeGetProduct(scanner, productManager);
+            }
+            case 2 -> {
+                menuKeuzeAddProduct(scanner, productManager);
+            }
+            case 3 -> {
+                menuKeuzeRemoveProduct(scanner, productManager);
+            }
+            case 4 -> {
+                menuKeuzeOpstellenInformatieOverzicht(scanner, productManager, informatieOverzicht);
+            }
+            case 5 -> {
+                menuKeuzeFinancieleGegevensToevoegen(scanner, productManager, financieelOverzichtManager);
+            }
+            case 6 -> {
+                menuKeuzeOpstellenFinancieelOverzicht(scanner, productManager, financieelOverzichtManager);
+            }
+            case 7 -> {
+                menuKeuzeGetWerknemers(scanner, productManager, medewerkersPool);
+            }
+            case 8 -> {
+                menuKeuzeAddMedewerker(scanner, productManager, medewerkersPool);
+            }
+            case 9 -> {
+                menuKeuzeRemoveMedewerker(scanner, productManager, medewerkersPool);
+            }
+            case 0 -> {
+                return false;
+            }
+            default -> {
+                System.out.println("Ongeldige keuze");
+            }
+        }
+        return true;
+    }
+
+    public boolean normalMenu (Scanner scanner, ProductManager productManager, InformatieOverzicht informatieOverzicht) {
+        int keuze = scanner.nextInt();
+        switch (keuze) {
+            case 1 -> {
+                menuKeuzeGetProduct(scanner, productManager);
+            }
+            case 2 -> {
+                menuKeuzeAddProduct(scanner, productManager);
+            }
+            case 3 -> {
+                menuKeuzeRemoveProduct(scanner, productManager);
+            }
+            case 4 -> {
+                menuKeuzeOpstellenInformatieOverzicht(scanner, productManager, informatieOverzicht);
+            }
+            case 0 -> {
+                return false;
+            }
+            default -> {
+                System.out.println("Ongeldige keuze");
+            }
+        }
+        return true;
     }
 }
