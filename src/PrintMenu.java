@@ -133,8 +133,12 @@ class MenuManager {
                     case 9 -> {
                         menuKeuzeRemoveMedewerker(scanner, productManager, medewerkersPool);
                     }
-                    case 0 -> {actief = false;}
-                    default -> {System.out.println("Ongeldige keuze");}
+                    case 0 -> {
+                        actief = false;
+                    }
+                    default -> {
+                        System.out.println("Ongeldige keuze");
+                    }
                 }
             }
 
