@@ -46,6 +46,12 @@ public class Medewerker {
 class MedewerkersPool {
     private ArrayList<Medewerker> medewerkerGegevens = new ArrayList<>();
 
+    public void bootstrap() {
+        addMedewerker("Jan", "Kabel", "123", "Eigenaar");
+        addMedewerker("Karel", "van der Plank", "321", "Werknemer");
+        addMedewerker("Piet", "Stoel", "101", "Administratief Medewerker");
+    }
+
     public void printWithWerknemersCode() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Geef de werknemercode: ");

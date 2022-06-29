@@ -29,6 +29,12 @@ class FinancieelOverzichtManager {
 
     private ArrayList<FinancieelWeekInformatie> financieleGegevens = new ArrayList<>();
 
+    public void bootstrap() {
+        toevoegenFinancieleGegevens(1, 1000, 600);
+        toevoegenFinancieleGegevens(2, 1200, 800);
+        toevoegenFinancieleGegevens(3, 1600, 850);
+        toevoegenFinancieleGegevens(4, 2200, 2000);
+    }
 
     public void opstellenFinancieelOverzicht() {
         Scanner scanner = new Scanner(System.in);
