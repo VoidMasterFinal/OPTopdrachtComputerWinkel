@@ -102,12 +102,13 @@ class MenuManager {
         boolean actief = true;
         while (actief) {
             printMenu.printMenu1();
-            if (medewerker.getBedrijfsrol().equals("Eigenaar") || medewerker.getBedrijfsrol().equals("Administratief Medewerker")) {
+            String bedrijfsrolMedewerker = medewerker.getBedrijfsrol();
+            if (bedrijfsrolMedewerker.equals("Eigenaar") || bedrijfsrolMedewerker.equals("Administratief Medewerker")) {
                 printMenu.printMenu2();
                 System.out.println("0) Exit\nMaak een keuze: ");
                 actief = menuManager.superMenu(scanner, productManager, informatieOverzicht, financieelOverzichtManager, medewerkersPool);
             }
-            if (medewerker.getBedrijfsrol().equals("Werknemer")) {
+            if (bedrijfsrolMedewerker.equals("Werknemer")) {
                 System.out.println("0) Exit\nMaak een keuze: ");
                 actief = menuManager.normalMenu(scanner, productManager, informatieOverzicht);
             }
