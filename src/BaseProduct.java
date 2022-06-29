@@ -11,13 +11,10 @@ public class BaseProduct {
     private String extraInfo;
     protected String product_type;
 
-    public BaseProduct(String naam, String merk, int code, double inkoopPrijs, double verkoopPrijs, int voorraad) {
+    public BaseProduct(String naam, String merk, int code) {
         this.naam = naam;
         this.merk = merk;
         this.code = code;
-        this.inkoopPrijs = inkoopPrijs;
-        this.verkoopPrijs = verkoopPrijs;
-        this.voorraad = voorraad;
         this.product_type = "Algemeen";
     }
 
@@ -53,6 +50,18 @@ public class BaseProduct {
         this.extraInfo = extraInfo;
     }
 
+    public void setInkoopPrijs(double newInkoopPrijs) {
+        inkoopPrijs = newInkoopPrijs;
+    }
+
+    public void setVerkoopPrijs(double newVerkoopPrijs) {
+        verkoopPrijs = newVerkoopPrijs;
+    }
+
+    public void setVoorraad(int newVoorraad) {
+        voorraad = newVoorraad;
+    }
+
     public void print() {
         System.out.println("Naam: " + naam + "" +
                 "\nMerk: " + merk + "" +
@@ -69,8 +78,8 @@ class LaptopProduct extends BaseProduct {
     private double screen_inch;
     private boolean has_fingerprint_reader;
 
-    public LaptopProduct(String naam, String merk, int code, double inkoopPrijs, double verkoopPrijs, int voorraad, double screen_inch, boolean has_fingerprint_reader) {
-        super(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad);
+    public LaptopProduct(String naam, String merk, int code, double screen_inch, boolean has_fingerprint_reader) {
+        super(naam, merk, code);
         this.screen_inch = screen_inch;
         this.has_fingerprint_reader = has_fingerprint_reader;
         this.product_type = "Laptop";
@@ -88,8 +97,8 @@ class PrinterProduct extends BaseProduct {
     private double weightKG;
     private boolean has_display;
 
-    public PrinterProduct(String naam, String merk, int code, double inkoopPrijs, double verkoopPrijs, int voorraad, double weightKG, boolean has_display) {
-        super(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad);
+    public PrinterProduct(String naam, String merk, int code, double weightKG, boolean has_display) {
+        super(naam, merk, code);
         this.weightKG = weightKG;
         this.has_display = has_display;
         this.product_type = "Printer";
@@ -131,10 +140,25 @@ class ProductManager {
     private ArrayList<BaseProduct> alleProducten = new ArrayList<>();
 
     public void bootstrap() {
-        alleProducten.add(new LaptopProduct("Intel9C","Intel", alleProducten.size() + 1,300,450, 3, 15, true));
-        alleProducten.add(new PrinterProduct("Colorer10","COLOR", alleProducten.size() + 1,100,250, 5, 8, true));
-        alleProducten.add(new BaseProduct("Intel5D","Intel",500,600,5,1));
-        alleProducten.add(new BaseProduct("DELLG2","DELL",580,680,3,1));
+        alleProducten.add(new LaptopProduct("Intel9C","Intel", alleProducten.size() + 1, 15, true));
+        alleProducten.get(alleProducten.size() - 1).setInkoopPrijs(300);
+        alleProducten.get(alleProducten.size() - 1).setVerkoopPrijs(450);
+        alleProducten.get(alleProducten.size() - 1).setVoorraad(3);
+
+        alleProducten.add(new PrinterProduct("Colorer10","COLOR", alleProducten.size() + 1, 8, true));
+        alleProducten.get(alleProducten.size() - 1).setInkoopPrijs(100);
+        alleProducten.get(alleProducten.size() - 1).setVerkoopPrijs(250);
+        alleProducten.get(alleProducten.size() - 1).setVoorraad(5);
+
+        alleProducten.add(new BaseProduct("Intel5D","Intel", alleProducten.size() + 1));
+        alleProducten.get(alleProducten.size() - 1).setInkoopPrijs(500);
+        alleProducten.get(alleProducten.size() - 1).setVerkoopPrijs(600);
+        alleProducten.get(alleProducten.size() - 1).setVoorraad(1);
+
+        alleProducten.add(new BaseProduct("DELLG2","DELL", alleProducten.size() + 1));
+        alleProducten.get(alleProducten.size() - 1).setInkoopPrijs(580);
+        alleProducten.get(alleProducten.size() - 1).setVerkoopPrijs(680);
+        alleProducten.get(alleProducten.size() - 1).setVoorraad(3);
     }
 
     public ArrayList<BaseProduct> getProductList() {
@@ -155,10 +179,10 @@ class ProductManager {
         Double verkoopPrijsSelected = scanner.nextDouble();
         System.out.println("Geef de voorraad van het product dat u wilt toevoegen:");
         int voorraadProduct = scanner.nextInt();
-        return addProduct(productNaamSelected, productMerkSelected, inkoopPrijsSelected, verkoopPrijsSelected, voorraadProduct,"", productType);
+        return addProduct(productNaamSelected, productMerkSelected, inkoopPrijsSelected, verkoopPrijsSelected, voorraadProduct, productType);
     }
 
-    public BaseProduct addProduct(String naam, String merk, double inkoopPrijs, double verkoopPrijs, int voorraad, String extraInfo,String productType) {
+    public BaseProduct addProduct(String naam, String merk, double inkoopPrijs, double verkoopPrijs, int voorraad, String productType) {
         Scanner scanner = new Scanner(System.in);
 
         int code = alleProducten.size() + 1;
@@ -168,7 +192,10 @@ class ProductManager {
             double screenInches = scanner.nextDouble();
             System.out.println("Geef of de laptop een fingerprint reader heeft: (true/false)");
             boolean hasFingerprintReader = scanner.nextBoolean();
-            LaptopProduct laptopProduct = new LaptopProduct(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad, screenInches, hasFingerprintReader);
+            LaptopProduct laptopProduct = new LaptopProduct(naam, merk, code, screenInches, hasFingerprintReader);
+            laptopProduct.setInkoopPrijs(inkoopPrijs);
+            laptopProduct.setVerkoopPrijs(verkoopPrijs);
+            laptopProduct.setVoorraad(voorraad);
             ProductAdditionBuilder applyBuilder = new ApplyBuilder();
             alleProducten.add(laptopProduct);
             applyBuilder.setupDevice(alleProducten, productPos);
@@ -179,13 +206,19 @@ class ProductManager {
             double weightKG = scanner.nextDouble();
             System.out.println("Geef of de printer een display heeft: (true/false)");
             boolean hasDisplay = scanner.nextBoolean();
-            LaptopProduct laptopProduct = new LaptopProduct(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad, weightKG, hasDisplay);
+            PrinterProduct printerProduct = new PrinterProduct(naam, merk, code, weightKG, hasDisplay);
+            printerProduct.setInkoopPrijs(inkoopPrijs);
+            printerProduct.setVerkoopPrijs(verkoopPrijs);
+            printerProduct.setVoorraad(voorraad);
             ProductAdditionBuilder applyBuilder = new ApplyBuilder();
-            alleProducten.add(laptopProduct);
+            alleProducten.add(printerProduct);
             applyBuilder.setupDevice(alleProducten, productPos);
-            return laptopProduct;
+            return printerProduct;
         }
-        BaseProduct product = new BaseProduct(naam, merk, code, inkoopPrijs, verkoopPrijs, voorraad);
+        BaseProduct product = new BaseProduct(naam, merk, code);
+        product.setInkoopPrijs(inkoopPrijs);
+        product.setVerkoopPrijs(verkoopPrijs);
+        product.setVoorraad(voorraad);
         ProductAdditionBuilder applyBuilder = new ApplyBuilder();
         alleProducten.add(product);
         applyBuilder.setupDevice(alleProducten, productPos);
